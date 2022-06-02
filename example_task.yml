@@ -1,0 +1,3 @@
+- name: ensure git is installed
+  apt: name=git-core state=present update_cache=yes
+  become: true

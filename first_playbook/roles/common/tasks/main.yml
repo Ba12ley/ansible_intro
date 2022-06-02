@@ -1,0 +1,4 @@
+# include other YAML files with tasks here
+
+- include: ping.yml
+- include: new_user.yml

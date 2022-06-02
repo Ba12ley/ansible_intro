@@ -1,0 +1,3 @@
+deploy_user: deployer
+deploy_group: deployers
+authorized_key_filename: "{{ lookup('env', 'AUTHORIZED_KEY')}}" #needs to be set and an evironment variable

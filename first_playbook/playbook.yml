@@ -1,0 +1,5 @@
+- name: apply config to servers listed in hosts
+  hosts: all
+  user: root
+  roles:
+    - common

@@ -1,0 +1,19 @@
+#create users
+
+- name: create non-root user group
+- group:
+  name: {{ deploy_group }}
+  state: present
+
+- name: create non-root user
+  user:
+    name: "{{ deploy_user }}"
+    group: "{{ deploy_group }}"
+    shell: "/bin/bash"
+    state: present
+
+- name: add authorised public key
+  authorized_key:
+    user: "{{ deploy_user }}"
+    state: present
+    key: "{{lookup('file'), '/key/location/public_key_name'}}"

@@ -1,0 +1,2 @@
+[common]
+ip address/name of server ansible_python_interpreter=/usr/bin/python3
