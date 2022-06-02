@@ -95,7 +95,7 @@ This will gather the facts about the system/host
 -e explicit state the interpreter, stops using python2 and can be used in the hosts file.  See first_playbook
 
 ## Running Playbooks
- *ansible-playbook -i ./hosts --private-key./id_rsa playbook.yml*
+ *ansible-playbook -i ./hosts --private-key=./id_rsa playbook.yml*
 
 -i specifies the hosts
 
