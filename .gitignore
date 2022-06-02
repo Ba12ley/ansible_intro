@@ -1,5 +1,5 @@
 /venv
 /first_playbook/hosts
-/first_playbook/group_vars/all
 key
 first_playbook/key.pub
+.idea
