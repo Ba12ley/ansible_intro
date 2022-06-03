@@ -1,0 +1,2 @@
+#securing the server
+- include: security.yml

@@ -23,7 +23,7 @@
     dest: /etc/sudoers
     state: present
     regexp: "^{{ deploy_group }}"
-    line: "%{{ deploy_user }} ALL=(ALL) NOPASSWD: ALL"
+    line: "%{{ deploy_group }} ALL=(ALL) NOPASSWD: ALL"
     validate: visudo -cf %s
 
 - name: disable root login

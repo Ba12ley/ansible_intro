@@ -1,0 +1,8 @@
+#webserver security config
+- name: enable HTTP
+  ufw: rule=allow port=80
+  become: yes
+
+- name: enable HTTPS
+  ufw: rule=allow port=443
+  become: yes

@@ -1,0 +1,9 @@
+#install nginx and configure
+
+- name: check and install nginx
+  apt: name=nginx state=present update_cache=yes
+  become: yes
+
+- name: custom nginx configuration
+  template: src=nginx_conf.j2 dest=/etc/nginx/conf.d/app.conf
+  become: yes
