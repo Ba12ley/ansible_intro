@@ -1,0 +1,20 @@
+# Create postgres database
+- name: install postgres and python dependencies
+  apt: name={{item}}
+  with_items:
+    - postgresql
+    - libpq-dev
+    - python3-psygopg2
+    - postgresql-client
+    - postgresql-client-common
+  become: yes
+
+- name: create new db instance
+  postgresql_db: name={{db_name}}
+  become: yes
+  become_user: postgres
+
+- name: create new db user
+  postgresql_user: db= {{db_name}} name={{db_user}} password={{db_password}} priv=ALL role_attr_flags=NOSUPERUSER
+  become: yes
+  become_user: postgres
