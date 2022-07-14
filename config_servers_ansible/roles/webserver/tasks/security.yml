@@ -1,0 +1,11 @@
+#security config and hardening for webserver
+
+- name: enable http within firewall
+  ufw: rule=allow port=80
+  become: yes #become sudo
+
+- name: enable https within firewall
+  ufw: rule=allow port=443
+  become: yes #become sudo
+
+

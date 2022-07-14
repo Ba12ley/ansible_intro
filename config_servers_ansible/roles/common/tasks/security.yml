@@ -1,0 +1,18 @@
+#install security config and hardening
+- name: ensure packages are installed
+  apt:
+    name: "{{item}}" #from list in with_items below
+    update_cache: yes
+  become: yes  #become sudo
+  with_items:
+    - "python3-pip"
+    - "python3-dev"
+    - "fail2ban"
+
+- name: enable ssh within firewall
+  ufw: rule=allow port=22
+  become: yes #become sudo
+
+- name: enable firewall
+  ufw: state=enable
+  become: yes

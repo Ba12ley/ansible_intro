@@ -1,0 +1,18 @@
+[init_config]
+#This is the initial config, setting up users and groups
+#ip addresses for the intended servers to be configured with python interpreter
+webserver_ip ansible_python_interpreter=/usr/bin/python3
+database_ip ansible_python_interpreter=/usr/bin/python3
+
+[common]
+#This is for common role hosts
+webserver_ip ansible_python_interpreter=/usr/bin/python3
+database_ip ansible_python_interpreter=/usr/bin/python3
+
+[webserver]
+#This is for the webserver/s
+webserver_ip ansible_python_interpreter=/usr/bin/python3
+
+[database]
+This is for the data
+database_ip ansible_python_interpreter=/usr/bin/python3

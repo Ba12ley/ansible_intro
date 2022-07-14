@@ -1,0 +1,45 @@
+#Create group and users with sudo privileges
+- name: Create non-root group
+  group:
+    name: "{{ deploy_group }}" #a set variable in a variables file group_vars/all
+    state: present
+
+- name: Create non-root user
+  user:
+    name: "{{deploy_user}}"  #a set variable in a variables file group_vars/all
+    group: "{{deploy_group}}"  #a set variable in a variables file group_vars/all
+    shell: "/bin/zsh"
+    state: present
+
+- name: Add authorised_key to non root user
+  authorized_key:
+    user: "{{deploy_user}}"  #a set variable in a variables file group_vars/all
+    state: present
+    key: "{{lookup('file', ssh_dir + ssh_key_name + '.pub')}}"
+
+- name: Add non-root to sudoers
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    regexp: "^{{deploy_group}}"
+    line: "%{{deploy_group}} ALL=(ALL) NOPASSWD: ALL"
+    validate: visudo -cf %s
+
+- name: Disable root user login
+  replace:
+    destfile: /etc/ssh/sshd_config
+    regexp: "^PermitRootLogin yes"
+    replace: "PermitRootLogin no"
+    backup: no
+
+- name: Disable SSH logins by password authentication
+  replace:
+    destfile: /etc/ssh/sshd_config
+    regexp: "^PasswordAuthentication yes"
+    replace: "PasswordAuthentication no"
+    backup: no
+
+- name:
+    service:
+      name: ssh
+      state: restarted

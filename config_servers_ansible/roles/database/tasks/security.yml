@@ -1,0 +1,9 @@
+#security config and hardening for database servers
+
+- name: enable PostgreSQL within firewall
+  ufw: rule=allow port=5432
+  become: yes #become sudo
+
+
+
+

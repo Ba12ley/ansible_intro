@@ -1,0 +1,4 @@
+deploy_user: deployer
+deploy_group: deployers
+ssh_dir: location of ssh key
+ssh_key_name: ssh key name

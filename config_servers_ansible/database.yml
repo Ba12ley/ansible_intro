@@ -1,0 +1,7 @@
+# Configure a database server
+- name: Apply webserver configuration
+  hosts: webserver #must match what is in the hosts []
+  user: deployer
+  roles:
+    - common
+    - database

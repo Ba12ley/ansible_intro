@@ -1,0 +1,6 @@
+#Setup non-root user and group
+- name: Initial config to server
+  hosts: init_config #uses the hosts file and the addresses in [init_config]
+  user: root
+  roles:
+    init_config #found in roles/init_config/tasks/main.yml
