@@ -95,7 +95,7 @@ This will gather the facts about the system/host
 -e explicit state the interpreter, stops using python2 and can be used in the hosts file.  See first_playbook
 
 ## Running Playbooks
- *ansible-playbook -i ./hosts --private-key./id_rsa playbook.yml*
+ *ansible-playbook -i ./hosts --private-key=./id_rsa playbook.yml*
 
 -i specifies the hosts
 
@@ -109,3 +109,19 @@ followed by the playbook to run
 ### Setting Variables and templates
 
 Setting variables in the group_vars directory in a file named all
+
+
+## Encrypt sensitive files
+
+Ansible vault
+
+*ansible-vault encrypt {filename}*
+Add a password, will be requested to edit files
+
+To specify and editor
+
+*EDITOR=nano ansible-vault edit {filename}*
+
+To run play book
+
+*ansible-playbook --ask-vault-pass -i {inventory} --private-key={key} {playbook.yml}*

@@ -1,0 +1,7 @@
+/venv
+/first_playbook/hosts
+key
+first_playbook/key.pub
+.idea
+server_config/id_rsa.pub
+server_config/id_rsa

@@ -1,9 +1,9 @@
 #create users
 
 - name: create non-root user group
-- group:
-  name: {{ deploy_group }}
-  state: present
+  group:
+    name: "{{ deploy_group }}"
+    state: present
 
 - name: create non-root user
   user:
@@ -16,4 +16,4 @@
   authorized_key:
     user: "{{ deploy_user }}"
     state: present
-    key: "{{lookup('file'), '/key/location/public_key_name'}}"
+    key: "{{lookup('file', '/Users/baizley/PycharmProjects/ansible_intro/first_playbook/key.pub')}}"

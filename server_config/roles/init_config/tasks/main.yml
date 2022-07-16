@@ -1,0 +1,46 @@
+# Setup non-root users
+
+- name: create non root group
+  group:
+    name: "{{ deploy_group }}"
+    state: present
+
+- name: create non root user
+  user:
+    name: "{{ deploy_user }}"
+    group: "{{ deploy_group }}"
+    shell: "/bin/bash"
+    state: present
+
+- name: authorised key
+  authorized_key:
+    user: "{{ deploy_user }}"
+    state: present
+    key: "{{ lookup('file', '/Users/baizley/PycharmProjects/ansible_intro/server_config/id_rsa.pub') }}"
+
+- name: give sudo privileges
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    regexp: "^{{ deploy_group }}"
+    line: "%{{ deploy_group }} ALL=(ALL) NOPASSWD: ALL"
+    validate: visudo -cf %s
+
+- name: disable root login
+  replace:
+    destfile: /etc/ssh/sshd_config
+    regexp: "^PermitRootLogin yes"
+    replace: "PermitRootLogin no"
+    backup: no
+
+- name: disable root login with password
+  replace:
+    destfile: /etc/ssh/sshd_config
+    regexp: "^PasswordAuthentication yes"
+    replace: "PasswordAuthentication no"
+    backup: no
+
+- name: restart ssh
+  service:
+    name: ssh
+    state: restarted

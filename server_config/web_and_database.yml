@@ -1,0 +1,14 @@
+#configure webserver and database
+- name: apply webserver config to server
+  hosts: webserver
+  user: deployer
+  roles:
+    - common
+    - webserver
+
+- name: apply database config to server
+  hosts: database
+  user: deployer
+  roles:
+    - common
+    - database
