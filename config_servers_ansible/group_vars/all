@@ -6,3 +6,10 @@ ssh_key_name: ssh key name
 db_name: "name of db"
 db_user: "{{deploy_user}}" #reuse of existing vars is allowed
 db_password: notpassword
+
+domain_name: "domname.com"
+email_for_ssl_cert: "yada@yada.com"
+webserver_dir: "/var/www/html/"
+
+wsgi_server_port: 8000
+sub_app_dir: "/home/{{deploy_user}}/app_name"

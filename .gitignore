@@ -5,3 +5,5 @@ first_playbook/key.pub
 .idea
 server_config/id_rsa.pub
 server_config/id_rsa
+config_servers_ansible/server_config_ansible
+config_servers_ansible/server_config_ansible.pub
