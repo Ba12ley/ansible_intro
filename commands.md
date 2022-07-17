@@ -125,3 +125,6 @@ To specify and editor
 To run play book
 
 *ansible-playbook --ask-vault-pass -i {inventory} --private-key={key} {playbook.yml}*
+
+## Running from a specific task
+*ansible-playbook -i ./hosts --private-key=./id_rsa playbook.yml --start-at-task="task name in .yml file"*

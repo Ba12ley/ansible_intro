@@ -2,3 +2,5 @@
 - include: security.yml #points the file to include
 - include: nginx.yml
 - include: git.yml
+- include: dependencies.yml
+- include: wsgi.yml

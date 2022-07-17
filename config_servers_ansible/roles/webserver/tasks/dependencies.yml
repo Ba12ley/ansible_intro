@@ -1,0 +1,22 @@
+#Pip install dependencies
+
+- name: Check and install pip, venv
+  apt:
+    name: {{item}}
+    update_cache: yes
+  become: yes
+  with_items:
+    - python3-pip
+    - python3-venv
+
+- name: Check if venv is created
+  stat:
+    path: {{venv_dir}}
+  register: venv_created
+
+- name: Create venv
+  shell: "python3 -m venv {{venv_dir}}"
+  when: not venv_created.stat.exists
+
+- name: Install dependencies
+  shell: "cd {{app_dir}}: {{venv_dir}}/bin/pip3 install --upgrade -r requirements.txt"

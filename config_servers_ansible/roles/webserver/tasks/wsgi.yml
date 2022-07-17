@@ -1,0 +1,23 @@
+#Configure and run wsgi server
+
+- name: Install supervisor
+  apt: name=supervisor state=present update_cache=yes
+  become: yes
+
+- name: Supervisor config
+  template: src=supervisor_app_config.j2 dest=/etc/supervisor/conf.d/{{app_name}}.conf
+  become: yes
+
+- name: Stop supervisor
+  service: name=supervisor state=stopped
+  become: yes
+
+- name: Pause for config to take effect
+  pause: seconds=2
+
+- name: Start supervisor
+  service: name=supervisor state=started
+  become: yes
+  notify:
+    - restart_nginx #allows to call another task, found in the handlers dir main.yml
+

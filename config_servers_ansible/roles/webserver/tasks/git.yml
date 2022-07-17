@@ -1,0 +1,14 @@
+#Clone git repo install git
+
+- name: Check git is installed
+  apt: name=git state=present update_cahce=yes
+  become: yes
+
+- name: Create dir for deploy key for github
+  file: path=/path/to/file
+
+- name: ensure key is on server
+  copy: src=/path/to/key/on/local/machine or use a group var dest=/path/to/dest mode=0600 owner={{deploy_user}} group={{deploy_group}}
+
+- name: clone repo
+  git: repo={{git_repo}} dest=/path/to/dest keyfile=/path/to/deploy/key accept_hostkey=yes
